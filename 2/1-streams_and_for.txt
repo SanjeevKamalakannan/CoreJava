@@ -1,0 +1,20 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class myclass {
+    public static void main(String[] args) {
+        
+        String a[]= new String[] { "A", "B", "C", "D" };
+        List<String> argList = Arrays.asList(a);
+        Collections.shuffle(argList);
+        
+        System.out.println("Stream");
+        argList.stream().forEach(e->System.out.format("%s ",e));
+        System.out.println("\nFor Loop");
+        for (String arg: argList) {
+            System.out.format("%s ", arg);
+        }
+        System.out.println();
+    }
+}

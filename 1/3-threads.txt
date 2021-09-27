@@ -1,0 +1,53 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class processData implements Runnable {
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Doing processData - START "+Thread.currentThread().getName());
+        System.out.println("Doing processData - END "+Thread.currentThread().getName());
+    }
+}
+class fetchData extends Thread {
+
+    public fetchData(String name) {
+        super(name);
+    }
+
+    @Override
+    public void run() {
+        System.out.println("fetchData - START "+Thread.currentThread().getName());
+        try {
+            System.out.println("Starting Timeout 5000ms");
+            Thread.sleep(5000);
+            System.out.println("Ending Timeout 5000ms");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("fetchData - END "+Thread.currentThread().getName());
+        try {
+            System.out.println("Starting Timeout 10000ms");
+            Thread.sleep(10000);
+            System.out.println("Ending Timeout 10000ms");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }   
+}
+class ThreadRunExample {
+
+    public static void main(String[] args){
+        Thread t1 = new fetchData("t1");
+        t1.start();
+        Thread t2 = new Thread(new processData(), "t2");
+        t2.start();
+        
+        
+    }
+}
